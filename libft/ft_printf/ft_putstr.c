@@ -1,17 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 17:09:29 by cfiachet          #+#    #+#             */
-/*   Updated: 2024/11/27 21:16:26 by cfiachet         ###   ########.fr       */
+/*   Created: 2024/11/03 15:04:03 by cfiachet          #+#    #+#             */
+/*   Updated: 2024/11/04 12:57:29 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include "ft_printf.h"
+
+int	ft_putstr(char *str)
 {
-	ft_printf("%d, voici le PID : ", getpid());
-	return (0);
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (write(1, "(null)", 6), 6);
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
 }
