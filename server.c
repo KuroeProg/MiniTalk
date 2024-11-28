@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:09:29 by cfiachet          #+#    #+#             */
-/*   Updated: 2024/11/28 18:19:47 by cfiachet         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:21:24 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 {
 	struct sigaction	signal;
 
+	(void)argv;
 	if (argc != 1)
 		return (printf("Error, number of arguments invalid.\n"), 0);
 	signal.sa_sigaction = signal_handler;
