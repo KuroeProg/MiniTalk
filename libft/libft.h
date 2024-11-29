@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 17:36:12 by cfiachet          #+#    #+#             */
-/*   Updated: 2024/11/30 00:49:36 by cfiachet         ###   ########.fr       */
+/*   Created: 2024/11/30 00:48:28 by cfiachet          #+#    #+#             */
+/*   Updated: 2024/11/30 00:49:08 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
-# include <signal.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/ft_printf/ft_printf.h"
-# include "libft/libft.h"
-
-typedef struct s_str
-{
-    char    *str;
-    int     bit;
-    int     i;
-} t_str;
+int	ft_atoi(const char *str);
 
 #endif

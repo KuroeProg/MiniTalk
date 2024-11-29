@@ -6,13 +6,12 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:09:29 by cfiachet          #+#    #+#             */
-/*   Updated: 2024/11/29 18:56:16 by cfiachet         ###   ########.fr       */
+/*   Updated: 2024/11/30 00:44:55 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdlib.h>
-#include <signal.h>
+#include "libft/ft_printf/ft_printf.h"
 
 void	reset(t_str *str)
 {
