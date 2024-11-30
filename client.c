@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 00:49:45 by cfiachet          #+#    #+#             */
-/*   Updated: 2024/11/30 00:50:09 by cfiachet         ###   ########.fr       */
+/*   Updated: 2024/11/30 11:17:10 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int main(int argc, char **argv)
     pid_t   pid;
 
     if (argc != 3)
-        return (ft_printf("./client <PID> <messahe>\n"), 1);
+        return (ft_printf("./client <PID> <Message>\n"), 1);
     pid = ft_atoi(argv[1]);
     if (pid <= 0)
     {
