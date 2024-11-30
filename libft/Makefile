@@ -4,7 +4,7 @@ CC = clang
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS := ft_atoi.c
+SRCS := ft_atoi.c ft_memcpy.c
 
 OBJ := $(SRCS:.c=.o)
 

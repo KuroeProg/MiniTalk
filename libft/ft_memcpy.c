@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/30 00:48:28 by cfiachet          #+#    #+#             */
-/*   Updated: 2024/11/30 11:58:52 by cfiachet         ###   ########.fr       */
+/*   Created: 2024/10/11 22:35:21 by cfiachet          #+#    #+#             */
+/*   Updated: 2024/11/30 11:56:54 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stddef.h>
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t	i;
 
-int	ft_atoi(const char *str);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-
-#endif
+	if (!dest && !src)
+		return (0);
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dest);
+}

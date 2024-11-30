@@ -6,83 +6,81 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:09:29 by cfiachet          #+#    #+#             */
-/*   Updated: 2024/11/30 11:17:49 by cfiachet         ###   ########.fr       */
+/*   Updated: 2024/11/30 12:17:06 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include "libft/ft_printf/ft_printf.h"
 
-void	reset(t_str *str)
+void	reset(char **str, int *i, int *bit)
 {
-	free(str->str);
-	str->str = NULL;
-	str->i = 0;
+    if (*str)
+        free(*str);
+    *str = NULL;
+    *i = 0;
+    *bit = 0;
 }
 
-void	add_char(t_str *str, char c)
+void	add_char(char **str, char c, int *i)
 {
-	char	*new;
-	int		size;
+    char	*new;
+    int		len;
 
-	size = str->i++;
-	new = malloc(sizeof(int) * size + 1);
-	if (!new)
-	{
-		reset(str);
-		exit(EXIT_FAILURE);
-	}
-	if (str->str)
-	{
-		while(str->i--)
-			new[str->i] = str->str[str->i];
-		free(str->str);
-	}
-	new[size - 1] = c;
-	new[size] = '\0';
-	str->str = new;
-	str->i = size;
+    len = *i + 1;
+    new = malloc(sizeof(char) * (len + 1));
+    if (!new)
+        return ;
+    if (*str)
+    {
+        ft_memcpy(new, *str, *i);
+        free(*str);
+    }
+    new[*i] = c;
+    new[len] = '\0';
+    *str = new;
+    (*i)++;
 }
 
 void	signal_handler(int signal, siginfo_t *info, void *s)
 {
-	static char		c;
-	static t_str 	str;
+    static char		c = 0;
+    static char		*str = NULL;
+    static int		i = 0;
+    static int		bit = 0;
 
-	(void)s;
-	c = 0;
-	if (signal == SIGUSR1)
-		c |= (0x01 << str.bit);
-	str.bit++;
-	if (str.bit == 8)
-	{
-		str.bit = 0;
-		if (c == '\0')
-		{
-			ft_printf("%s\n", str.str);
-			reset(&str);
-		}
-		else
-			add_char(&str, c);
-		c = 0;
-		kill(info->si_pid, SIGUSR2);
-	}
+    (void)s;
+    if (signal == SIGUSR1)
+        c |= (0x01 << bit);
+    bit++;
+    if (bit == 8)
+    {
+        bit = 0;
+        if (c == '\0')
+        {
+            ft_printf("%s\n", str);
+            reset(&str, &i, &bit);
+        }
+        else
+            add_char(&str, c, &i);
+        c = 0;
+        kill(info->si_pid, SIGUSR2);
+    }
 }
 
 int	main(int argc, char **argv)
 {
-	struct sigaction	signal;
+    struct sigaction	signal;
 
-	(void)argv;
-	if (argc != 1)
-		return (ft_printf("Error, number of arguments invalid.\n"), 0);
-	signal.sa_sigaction = signal_handler;
-	signal.sa_flags = 0;
-	sigemptyset(&signal.sa_mask);
-	sigaction(SIGUSR1, &signal, NULL);
-	sigaction(SIGUSR2, &signal, NULL);
-	ft_printf("Hello! The PID is : %d\nWaiting for a message\n", getpid());
-	while (1)
-		pause();
-	return (0);
+    (void)argv;
+    if (argc != 1)
+        return (ft_printf("Error, number of arguments invalid.\n"), 0);
+    signal.sa_sigaction = signal_handler;
+    signal.sa_flags = SA_SIGINFO;
+    sigemptyset(&signal.sa_mask);
+    sigaction(SIGUSR1, &signal, NULL);
+    sigaction(SIGUSR2, &signal, NULL);
+    ft_printf("Hello! The PID is : %d\nWaiting for a message\n", getpid());
+    while (1)
+        pause();
+    return (0);
 }
