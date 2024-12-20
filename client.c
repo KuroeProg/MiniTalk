@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 00:49:45 by cfiachet          #+#    #+#             */
-/*   Updated: 2024/12/19 16:21:35 by cfiachet         ###   ########.fr       */
+/*   Updated: 2024/12/20 18:04:05 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	send_char(pid_t pid, char c)
 				exit(EXIT_FAILURE);
 			}
 		}
-		usleep(100);
+		usleep(1000);
 		bit++;
 	}
 }
